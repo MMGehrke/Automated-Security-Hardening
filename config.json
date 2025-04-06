@@ -1,0 +1,86 @@
+{
+    "services": [
+        {
+            "name": "telnet",
+            "disable": true
+        },
+        {
+            "name": "ftp",
+            "disable": true
+        },
+        {
+            "name": "rsh",
+            "disable": true
+        },
+        {
+            "name": "rlogin",
+            "disable": true
+        },
+        {
+            "name": "rexec",
+            "disable": true
+        },
+        {
+            "name": "tftp",
+            "disable": true
+        }
+    ],
+    "password_policies": {
+        "complexity": {
+            "min_length": 12,
+            "min_digits": 1,
+            "min_uppercase": 1,
+            "min_lowercase": 1,
+            "min_special": 1,
+            "history": 5
+        },
+        "lockout": {
+            "attempts": 5,
+            "duration": 30
+        }
+    },
+    "firewall_rules": [
+        {
+            "name": "Block Common Ports",
+            "direction": "in",
+            "action": "block",
+            "port": "23",
+            "protocol": "TCP"
+        },
+        {
+            "name": "Block Common Ports",
+            "direction": "in",
+            "action": "block",
+            "port": "21",
+            "protocol": "TCP"
+        },
+        {
+            "name": "Block Common Ports",
+            "direction": "in",
+            "action": "block",
+            "port": "512-514",
+            "protocol": "TCP"
+        },
+        {
+            "name": "Allow SSH",
+            "direction": "in",
+            "action": "allow",
+            "port": "22",
+            "protocol": "TCP"
+        },
+        {
+            "name": "Allow HTTP",
+            "direction": "in",
+            "action": "allow",
+            "port": "80",
+            "protocol": "TCP"
+        },
+        {
+            "name": "Allow HTTPS",
+            "direction": "in",
+            "action": "allow",
+            "port": "443",
+            "protocol": "TCP"
+        }
+    ]
+} 
