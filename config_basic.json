@@ -1,0 +1,62 @@
+{
+    "tier": "basic",
+    "description": "Basic security measures with minimal impact on usability",
+    "services": [
+        {
+            "name": "telnet",
+            "disable": true
+        },
+        {
+            "name": "ftp",
+            "disable": true
+        }
+    ],
+    "password_policies": {
+        "complexity": {
+            "min_length": 8,
+            "min_digits": 1,
+            "min_uppercase": 1,
+            "min_lowercase": 1,
+            "min_special": 0,
+            "history": 3
+        },
+        "lockout": {
+            "attempts": 10,
+            "duration": 15
+        }
+    },
+    "firewall_rules": [
+        {
+            "name": "Block Telnet",
+            "direction": "in",
+            "action": "block",
+            "port": "23",
+            "protocol": "TCP"
+        },
+        {
+            "name": "Block FTP",
+            "direction": "in",
+            "action": "block",
+            "port": "21",
+            "protocol": "TCP"
+        },
+        {
+            "name": "Allow SSH",
+            "direction": "in",
+            "action": "allow",
+            "port": "22",
+            "protocol": "TCP"
+        }
+    ],
+    "macos_settings": {
+        "enable_filevault": false,
+        "enable_gatekeeper": true,
+        "enable_sip": true,
+        "additional_services": [
+            {
+                "name": "com.apple.ftp",
+                "disable": true
+            }
+        ]
+    }
+} 

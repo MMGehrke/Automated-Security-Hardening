@@ -1,4 +1,6 @@
 {
+    "tier": "standard",
+    "description": "Standard security tier - Essential security with minimal impact on usability",
     "services": [
         {
             "name": "telnet",
@@ -15,50 +17,35 @@
         {
             "name": "rlogin",
             "disable": true
-        },
-        {
-            "name": "rexec",
-            "disable": true
-        },
-        {
-            "name": "tftp",
-            "disable": true
         }
     ],
     "password_policies": {
         "complexity": {
-            "min_length": 12,
+            "min_length": 8,
             "min_digits": 1,
             "min_uppercase": 1,
             "min_lowercase": 1,
-            "min_special": 1,
-            "history": 5
+            "min_special": 0,
+            "history": 3
         },
         "lockout": {
-            "attempts": 5,
-            "duration": 30
+            "attempts": 10,
+            "duration": 15
         }
     },
     "firewall_rules": [
         {
-            "name": "Block Common Ports",
+            "name": "Block Telnet",
             "direction": "in",
             "action": "block",
             "port": "23",
             "protocol": "TCP"
         },
         {
-            "name": "Block Common Ports",
+            "name": "Block FTP",
             "direction": "in",
             "action": "block",
             "port": "21",
-            "protocol": "TCP"
-        },
-        {
-            "name": "Block Common Ports",
-            "direction": "in",
-            "action": "block",
-            "port": "512-514",
             "protocol": "TCP"
         },
         {
@@ -84,10 +71,10 @@
         }
     ],
     "macos_settings": {
-        "enable_filevault": true,
-        "enable_gatekeeper": true,
-        "enable_sip": true,
-        "additional_services": [
+        "filevault": false,
+        "gatekeeper": true,
+        "sip": true,
+        "services": [
             {
                 "name": "com.apple.ftp",
                 "disable": true
